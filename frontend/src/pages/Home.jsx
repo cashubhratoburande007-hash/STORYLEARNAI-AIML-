@@ -52,11 +52,15 @@ await API.post("/save-story", {
 };
 const logout = () => {
   localStorage.removeItem("user");
-  window.location.href = "/Login";
+window.location.href = "/Login";
 };
 const Register = () => {
   localStorage.removeItem("user");
   window.location.href = "/Register";
+};
+const Register = () => {
+  localStorage.removeItem("user");
+  window.location.href = "/register";
 };
 return (
 <div className="home">

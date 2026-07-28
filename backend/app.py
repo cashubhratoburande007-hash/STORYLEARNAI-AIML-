@@ -16,18 +16,19 @@ app.register_blueprint(auth)
 app.register_blueprint(story)
 bcrypt.init_app(app)
 
-#SQLAlchemy configuration
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///instance/users.db"
+
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///users.db"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
-#Initialize Database
 db.init_app(app)
 
 with app.app_context():
     db.create_all()
     print("Database initialized!")
     print("Database path:", os.path.abspath("instance/users.db"))
-    
+    print("Database path:",
+          os.path.abspath("instance/users.db"))
+          
 @app.route("/")
 def home():
     return jsonify({
