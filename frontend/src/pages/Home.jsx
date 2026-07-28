@@ -10,133 +10,117 @@ function Home() {
   const [result, setResult] = useState("");
   const [loading, setLoading] = useState(false);
 
-const handleGenerate = async () => {
-  if (!concept) {
-    alert("Please enter a concept");
-    return;
-  }
+  const handleGenerate = async () => {
+    if (!concept.trim()) {
+      alert("Please enter a concept.");
+      return;
+    }
 
-  setLoading(true);
+    const user = JSON.parse(localStorage.getItem("user"));
 
-  try {
-    const response = await API.post("/generate-story", {
-      concept,
-      level,
-      language,
-    });
+    if (!user) {
+      alert("Please login first.");
+      window.location.href = "/login";
+      return;
+    }
 
-    setResult(response.data.result);
+    setLoading(true);
 
-    //Save story
-const user = JSON.parse(localStorage.getItem("user"));
+    try {
+      const response = await API.post("/generate-story", {
+        concept,
+        level,
+        language,
+      });
 
-if (!user) {
-  alert("Please login first.");
-  return;
-}
+      setResult(response.data.result);
 
-await API.post("/save-story", {
-  user_id: user.id,
-  concept,
-  level,
-  language,
-  story: response.data.result,
-});
+      // Save story
+      await API.post("/save-story", {
+        user_id: user.id,
+        concept,
+        level,
+        language,
+        story: response.data.result,
+      });
 
-  } catch (error) {
-    console.error(error);
-    alert("Failed to connect to the backend.");
-  }
+    } catch (error) {
+      console.error(error);
+      alert(error.response?.data?.message || "Failed to connect to the backend.");
+    } finally {
+      setLoading(false);
+    }
+  };
 
-  setLoading(false);
-};
-const logout = () => {
-  localStorage.removeItem("user");
-window.location.href = "/Login";
-};
-const Register = () => {
-  localStorage.removeItem("user");
-  window.location.href = "/Register";
-};
-const Register = () => {
-  localStorage.removeItem("user");
-  window.location.href = "/register";
-};
-return (
-<div className="home">
+  const logout = () => {
+    localStorage.removeItem("user");
+    window.location.href = "/login";
+  };
 
-    <div className="header">
+  return (
+    <div className="home">
 
+      <div className="header">
         <div className="logo">
-            📚 <span>StoryLearn AI</span>
+          📚 <span>StoryLearn AI</span>
         </div>
 
-        <button 
-          className="logout-btn"onClick={logout}>
-            Logout
+        <button
+          className="logout-btn"
+          onClick={logout}
+        >
+          Logout
         </button>
+      </div>
 
-    </div>
+      <div className="story-card">
 
-
-    <div className="story-card">
-
-        <h1>
-            Learn Through AI Stories ✨
-        </h1>
+        <h1>Learn Through AI Stories ✨</h1>
 
         <p>
-            Convert any concept into an engaging educational story using AI.
+          Convert any concept into an engaging educational story using AI.
         </p>
 
-
-        <input 
+        <input
+          type="text"
           placeholder="Enter concept (e.g. Machine Learning)"
           value={concept}
-          onChange={(e)=>setConcept(e.target.value)}
+          onChange={(e) => setConcept(e.target.value)}
         />
-
 
         <select
           value={level}
-          onChange={(e)=>setLevel(e.target.value)}
+          onChange={(e) => setLevel(e.target.value)}
         >
-            <option>School</option>
-            <option>College</option>
-            <option>Beginner</option>
-            <option>Advanced</option>
+          <option>School</option>
+          <option>College</option>
+          <option>Beginner</option>
+          <option>Advanced</option>
         </select>
-
 
         <select
           value={language}
-          onChange={(e)=>setLanguage(e.target.value)}
+          onChange={(e) => setLanguage(e.target.value)}
         >
-            <option>English</option>
-            <option>Hindi</option>
-            <option>Marathi</option>
+          <option>English</option>
+          <option>Hindi</option>
+          <option>Marathi</option>
         </select>
 
-
-        <button 
+        <button
           className="generate-btn"
           onClick={handleGenerate}
+          disabled={loading}
         >
-            {loading ? "Generating..." : "✨ Generate Story"}
+          {loading ? "Generating..." : "✨ Generate Story"}
         </button>
 
+        {result && <Result result={result} />}
 
-        {result && (
-          <Result result={result}/>
-        )}
+      </div>
 
     </div>
-
-
-</div>
-);
-  
+  );
 }
 
-  
 export default Home;
