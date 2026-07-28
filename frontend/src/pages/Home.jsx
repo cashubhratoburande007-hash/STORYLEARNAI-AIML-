@@ -32,11 +32,12 @@ const handleGenerate = async () => {
     JSON.parse(localStorage.getItem("user"))
 
     await API.post("/save-story",{
+      user_id: user.id,
       concept,
       level,
       language,
       story: response.data.result,
-    })
+    });
 
   } catch (error) {
     console.error(error);
