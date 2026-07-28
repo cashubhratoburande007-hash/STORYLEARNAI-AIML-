@@ -1,0 +1,46 @@
+.card {
+    border-radius: 15px;
+}
+
+.card h1,
+.card h2,
+.card h3 {
+    color: #0d6efd;
+    margin-top: 20px;
+}
+
+.card p {
+    line-height: 1.8;
+    font-size: 17px;
+}
+
+.card table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.card th,
+.card td {
+    border: 1px solid #ddd;
+    padding: 10px;
+}
+
+.card th {
+    background: #0d6efd;
+    color: white;
+}
+
+.card code {
+    background: #f4f4f4;
+    padding: 2px 5px;
+    border-radius: 5px;
+}
+
+.card pre {
+    background: #1e1e1e;
+    color: white;
+    padding: 15px;
+    border-radius: 10px;
+    overflow-x: auto;
+}

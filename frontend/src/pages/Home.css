@@ -1,0 +1,112 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+}
+
+.home {
+    min-height: 100vh;
+    padding: 40px;
+    color: white;
+    background: linear-gradient(rgba(15, 23, 42, .85), rgba(15, 23, 42, .85)), url("https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1920&q=80");
+    background-size: cover;
+    background-position: center;
+}
+
+
+/* Header */
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 50px;
+}
+
+.logo {
+    font-size: 35px;
+    font-weight: 700;
+}
+
+.logo span {
+    color: #818cf8;
+}
+
+.logout-btn {
+    background: #ef4444;
+    border: none;
+    padding: 12px 25px;
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+
+/* Main Card */
+
+.story-card {
+    max-width: 800px;
+    margin: auto;
+    padding: 40px;
+    background: rgba(255, 255, 255, .12);
+    backdrop-filter: blur(20px);
+    border-radius: 25px;
+    border: 1px solid rgba(255, 255, 255, .2);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, .4);
+}
+
+.story-card h1 {
+    text-align: center;
+    font-size: 40px;
+    margin-bottom: 15px;
+}
+
+.story-card p {
+    text-align: center;
+    color: #cbd5e1;
+    margin-bottom: 35px;
+}
+
+
+/* Inputs */
+
+input,
+select {
+    padding: 14px;
+    border-radius: 12px;
+    border: none;
+    width: 100%;
+    margin-bottom: 20px;
+    background: rgba(255, 255, 255, .15);
+    color: white;
+    font-size: 16px;
+}
+
+option {
+    color: black;
+}
+
+
+/* Button */
+
+.generate-btn {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 12px;
+    background: linear-gradient(90deg, #6366f1, #8b5cf6);
+    color: white;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.generate-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px #6366f1;
+}
