@@ -28,16 +28,20 @@ const handleGenerate = async () => {
     setResult(response.data.result);
 
     //Save story
-    const user =
-    JSON.parse(localStorage.getItem("user"))
+const user = JSON.parse(localStorage.getItem("user"));
 
-    await API.post("/save-story",{
-      user_id: user.id,
-      concept,
-      level,
-      language,
-      story: response.data.result,
-    });
+if (!user) {
+  alert("Please login first.");
+  return;
+}
+
+await API.post("/save-story", {
+  user_id: user.id,
+  concept,
+  level,
+  language,
+  story: response.data.result,
+});
 
   } catch (error) {
     console.error(error);
