@@ -63,9 +63,7 @@ return (
         </div>
 
         <button 
-          className="logout-btn"
-          onClick={logout}
-        >
+          className="logout-btn"onClick={logout}>
             Logout
         </button>
 
